@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "587172633751",
+    "firebase_url": "https://irregularverbs-74324.firebaseio.com",
+    "project_id": "irregularverbs-74324",
+    "storage_bucket": "irregularverbs-74324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587172633751:android:d838f08112812a0b",
+        "android_client_info": {
+          "package_name": "com.islavstan.irregularverbs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587172633751-8om53mvatr1rhlu8mno0bl905c18infv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJItxjRw68O0jpl2r-gsCWGJ1RIWiaAFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
