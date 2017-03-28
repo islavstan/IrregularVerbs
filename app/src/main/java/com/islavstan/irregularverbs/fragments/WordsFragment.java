@@ -1,31 +1,30 @@
-package com.islavstan.irregularverbs;
+package com.islavstan.irregularverbs.fragments;
 
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.islavstan.irregularverbs.R;
 import com.islavstan.irregularverbs.adapter.WordsRecyclerAdapter;
 import com.islavstan.irregularverbs.model.Words;
-import com.islavstan.irregularverbs.model.WordsList;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+public class WordsFragment extends Fragment {
     WordsRecyclerAdapter adapter;
     RecyclerView recyclerView;
     LinearLayoutManager mLayoutManager;
@@ -33,21 +32,20 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_words, container, false);
+
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
         adapter = new WordsRecyclerAdapter(wordsList);
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("words");
-
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot templateSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot templateSnapshot : dataSnapshot.getChildren()) {
                     Words words = templateSnapshot.getValue(Words.class);
                     Log.d("stas", words.toString());
                     wordsList.add(words);
@@ -63,23 +61,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mDatabase.addValueEventListener(listener);
-
-       /* TextView nameTV = (TextView)findViewById(R.id.name);
-        TextView emailTV = (TextView)findViewById(R.id.email);
-        ImageView image = (ImageView)findViewById(R.id.photo);
-
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-            nameTV.setText(name);
-            emailTV.setText(email);
-            Picasso.with(this).load(photoUrl).into(image);
-
-        }*/
-
-
+        return v;
     }
 }

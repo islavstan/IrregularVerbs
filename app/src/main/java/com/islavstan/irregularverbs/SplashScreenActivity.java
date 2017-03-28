@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity  {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashScreenActivity.this, NavigationActivity.class);
                     startActivity(intent);
 
                     Log.d("stas", "signed_in:" + user.getUid());

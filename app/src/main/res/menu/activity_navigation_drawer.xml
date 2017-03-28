@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/exersise"
+            android:title="Упражнения" />
+        <item
+            android:id="@+id/verbsList"
+            android:title="Неправильные глаголы" />
+        <item
+            android:id="@+id/users"
+            android:title="Все пользователи" />
+        <item
+            android:id="@+id/exit"
+            android:title="Выйти" />
+    </group>
+
+
+
+</menu>
